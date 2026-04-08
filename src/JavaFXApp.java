@@ -106,10 +106,24 @@ startButton.setOnAction(e -> {
     choicesBox.getChildren().addAll(choicesLabel, rockButton, paperButton, scissorsButton);
     choicesBox.setAlignment(javafx.geometry.Pos.CENTER);
     Label humanChoiceLabel = new Label("Choice: " + "None");
+    rockButton.setOnAction(er -> {
+        humanChoiceLabel.setText("Choice: Rock");
+    }); 
+    paperButton.setOnAction(ep -> {
+        humanChoiceLabel.setText("Choice: Paper");
+    });
+    scissorsButton.setOnAction(es -> {
+        humanChoiceLabel.setText("Choice: Scissors");
+    });
     humanBox.getChildren().add(humanLabel);
     humanBox.getChildren().add(choicesBox);
     humanBox.getChildren().add(humanChoiceLabel);
     humanBox.setAlignment(javafx.geometry.Pos.CENTER);
+
+
+    // choice button actions + logic 
+
+
 
 
         //computerbox

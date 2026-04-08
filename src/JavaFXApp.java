@@ -197,24 +197,7 @@ public class JavaFXApp extends Application {
         // add actual about information here
         // about button action
         aboutButton.setOnAction(e -> {
-            VBox aboutBox = new VBox();
-            Label aboutLabel = new Label("ADD ABOUT");
-            aboutBox.getChildren().add(aboutLabel);
-            HBox backBox = new HBox();
-            Button backButton = new Button("Back to Main Menu");
-            backBox.getChildren().add(backButton);
-            aboutBox.getChildren().add(backBox);
-            aboutBox.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-            backBox.setAlignment(javafx.geometry.Pos.BOTTOM_CENTER);
-            Scene aboutScene = new Scene(aboutBox, 300, 200);
-            stage.setTitle("About");
-            stage.setScene(aboutScene);
-            stage.show();
-
-            backButton.setOnAction(ev -> {
-                stage.setScene(scene);
-            });
-
+            showAbout(stage, scene);
         });
 
         // exit button action
@@ -228,25 +211,47 @@ public class JavaFXApp extends Application {
 
         stage.show();
 
-        // Label label = new Label("Welcome to the Rock-Paper-Scissors Game!");
-        // StackPane root = new StackPane(label);
-        // Scene scene = new Scene(root, 300, 300);
-        // Button startButton = new Button("Start Game");
-        // GridPane gridPane = new GridPane();
-        // startButton.setOnAction(e -> {
-        // System.out.println("Game Started!");
-        // });
-        // gridPane.add(startButton, 100, 100);
-        // VBox vbox = new VBox(label, gridPane);
-        // Scene scene2 = new Scene(vbox, 300, 300);
-        // stage.setTitle("Rock-Paper-Scissors Game");
-        // stage.setScene(scene);
-        // stage.setScene(scene2);
-        // stage.show();
+    private void showAbout(Stage stage, Scene mainScene) {
+        BorderPane aboutRoot = new BorderPane();
+        aboutRoot.setTop(createMenuBar(stage, mainScene));
+        VBox aboutBox = new VBox(15);
+        aboutBox.setAlignment(javafx.geometry.Pos.CENTER);
+        aboutBox.setStyle("-fx-padding: 20;");
+        Label titleLabel = new Label("Rock-Paper-Scissors");
+        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
-    }
+        Label infoLabel = new Label(
+                "This is a JavaFX Rock-Paper-Scissors game where you play against a computer.\n"
+                        + "Choose to play against a random strategy or a machine learning strategy.\n"
+                        + "The game will keep track of your wins, losses, and ties.\n"
+                        + "\n"
+                        + "How to play:\n"
+                        + "1. Click the 'Start Game' button to begin.\n"
+                        + "2. Choose the number of rounds you want to play.\n"
+                        + "3. In each round, select Rock, Paper, or Scissors.\n"
+                        + "4. The computer will make its move, and the winner will be displayed.\n"
+                        + "5. The game will keep track of your statistics.\n"
+                        + "\n"
+                        + "Have fun!");
+        infoLabel.setFont(Font.font("Arial", 13));
 
-    public static void main(String[] args) {
-        launch(args);
+        Label authorLabel = new Label("By: CanIGetAFiver");
+        authorLabel.setFont(Font.font("Arial", 12));
+
+        Button backButton = new Button("Back to Main Menu");
+        backButton.setOnAction(ev -> {
+            stage.setScene(mainScene);
+        });
+        aboutBox.getChildren().addAll(titleLabel, infoLabel, authorLabel, backButton);
+        aboutRoot.setCenter(aboutBox);
+        Scene aboutScene = new Scene(aboutRoot, 500, 450);
+        stage.setTitle("About");
+        stage.setScene(aboutScene);
     }
+    
+}
+}
+
+public static void main(String[] args) {
+    launch(args);
 }

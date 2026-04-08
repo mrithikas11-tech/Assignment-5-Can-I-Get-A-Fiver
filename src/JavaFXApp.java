@@ -133,7 +133,7 @@ public class JavaFXApp extends Application {
         Button startGameButton = new Button("Start Game");
         startGameButton.setOnAction(e->{
             totalRounds =roundSpinner.getValue();
-            stage.setTitle("Rock-Paper-Scissors Game - Round " +currentRound + " of " + totalRounds);
+            stage.setTitle("Rock-Paper-Scissors Game");
             startNewGame(stage,mainScene);
         });
 

@@ -1,0 +1,132 @@
+Welcome to the game!
+Enter -r for Random strategy, -m for Smart strategy, or 0 to exit:
+-r
+
+Round 1
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+0
+You chose Rock. The computer chose Paper. Computer wins!
+Score: Human:0 Computer:1 Draws:0
+
+Round 2
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+1
+You chose Paper. The computer chose Scissors. Computer wins!
+Score: Human:0 Computer:2 Draws:0
+
+Round 3
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+2
+You chose Scissors. The computer chose Rock. Computer wins!
+Score: Human:0 Computer:3 Draws:0
+
+Round 4
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+0
+You chose Rock. The computer chose Rock. Draw!
+Score: Human:0 Computer:3 Draws:1
+
+Round 5
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+1
+You chose Paper. The computer chose Rock. Human wins!
+Score: Human:1 Computer:3 Draws:1
+
+Round 6
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+0
+You chose Rock. The computer chose Scissors. Human wins!
+Score: Human:2 Computer:3 Draws:1
+
+Round 7
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+2
+You chose Scissors. The computer chose Paper. Human wins!
+Score: Human:3 Computer:3 Draws:1
+
+Round 8
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+1
+You chose Paper. The computer chose Rock. Human wins!
+Score: Human:4 Computer:3 Draws:1
+
+Round 9
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+0
+You chose Rock. The computer chose Paper. Computer wins!
+Score: Human:4 Computer:4 Draws:1
+
+Round 10
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+2
+You chose Scissors. The computer chose Rock. Computer wins!
+Score: Human:4 Computer:5 Draws:1
+
+Round 11
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+1
+You chose Paper. The computer chose Paper. Draw!
+Score: Human:4 Computer:5 Draws:2
+
+Round 12
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+0
+You chose Rock. The computer chose Scissors. Human wins!
+Score: Human:5 Computer:5 Draws:2
+
+Round 13
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+0
+You chose Rock. The computer chose Rock. Draw!
+Score: Human:5 Computer:5 Draws:3
+
+Round 14
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+1
+You chose Paper. The computer chose Scissors. Computer wins!
+Score: Human:5 Computer:6 Draws:3
+
+Round 15
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+2
+You chose Scissors. The computer chose Paper. Human wins!
+Score: Human:6 Computer:6 Draws:3
+
+Round 16
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+0
+You chose Rock. The computer chose Paper. Computer wins!
+Score: Human:6 Computer:7 Draws:3
+
+Round 17
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+1
+You chose Paper. The computer chose Rock. Human wins!
+Score: Human:7 Computer:7 Draws:3
+
+Round 18
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+2
+You chose Scissors. The computer chose Rock. Computer wins!
+Score: Human:7 Computer:8 Draws:3
+
+Round 19
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+0
+You chose Rock. The computer chose Scissors. Human wins!
+Score: Human:8 Computer:8 Draws:3
+
+Round 20
+Enter A Number: 0.Rock, 1.Paper, or 2.Scissors
+1
+You chose Paper. The computer chose Rock. Human wins!
+Score: Human:9 Computer:8 Draws:3
+
+---GAME OVER---
+Score: Human:9 Computer:8 Draws:3
+Human wins the game!
+---------------
+
+Enter -r for Random strategy, -m for Smart strategy, or 0 to exit:
+0
+Thank you for playing

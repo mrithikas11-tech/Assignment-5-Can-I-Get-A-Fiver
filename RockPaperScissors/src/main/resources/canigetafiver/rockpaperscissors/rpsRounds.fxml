@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="canigetafiver.rockpaperscissors.GameController">
+   <children>
+      <GridPane fx:id="gpGame" prefHeight="400.0" prefWidth="400.0" visible="false">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="45.0" prefWidth="111.0" text="Round:" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="curRound" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Label>
+            <Button fx:id="rockButton" mnemonicParsing="false" onAction="#onRockButtonClick" text="Rock" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label layoutX="4.0" layoutY="-3.0" text="Human">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="paperButton" layoutX="40.0" layoutY="38.0" mnemonicParsing="false" onAction="#onPaperButtonClick" text="Paper" />
+                  <Label layoutY="78.0" text="Human chooses: " />
+                  <Label fx:id="hChoice" layoutX="95.0" layoutY="78.0" text="Sign" />
+                  <Button fx:id="scissorsButton" layoutX="116.0" layoutY="38.0" mnemonicParsing="false" onAction="#onScissorsButtonClick" text="Scissors" />
+               </children>
+            </AnchorPane>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Choose: " textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Computer" GridPane.halignment="LEFT">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="predictHChoice" text="Predict" visible="false" GridPane.rowIndex="1" />
+                  <Label fx:id="cChoice" text="Computer Choice" visible="false" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Predicted Human Choice: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                  <Label text="Therefore Computer Chooses: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="116.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="64.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="35.0" prefWidth="112.0" text="Statistics" GridPane.halignment="RIGHT">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text="Human Wins: " GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label text="Computer Wins: " GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Label text="Draws: " GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Label fx:id="hWins" text="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                  <Label fx:id="cWins" text="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Label fx:id="draws" text="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <Label text="Winner:" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="roundWinner" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="50.0" />
+               </padding>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane fx:id="gpStart" prefHeight="400.0" prefWidth="100.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="167.0" prefWidth="176.0" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="setRounds" layoutX="7.0" layoutY="2.0" mnemonicParsing="false" onAction="#onSetRoundButtonClick" text="Set Rounds" />
+                   <Spinner fx:id="intSpinner" layoutX="7.0" layoutY="39.0" prefHeight="25.0" prefWidth="100.0" visible="false">
+                   <valueFactory>
+                       <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="20" max="2147483647" min="1" />
+                   </valueFactory>
+                   </Spinner>
+                  <Button fx:id="roundsOkay" layoutX="64.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSetRoundOkayButtonClick" text="Okay" visible="false" />
+               </children>
+            </AnchorPane>
+            <GridPane prefHeight="274.0" prefWidth="248.0" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="doneButton" onAction="#onDoneButtonClick" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Done" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="startButton" mnemonicParsing="false" onAction="#onStartButtonClick" text="Start" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Label fx:id="roundsNum" text="Total Rounds: 20">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="changeRoundLabel" alignment="CENTER" text="Change Numbers of Rounds" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

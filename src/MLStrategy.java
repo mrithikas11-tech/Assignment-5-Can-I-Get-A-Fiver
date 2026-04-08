@@ -1,13 +1,18 @@
 import java.util.HashMap;
 import java.util.Set;
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class MLStrategy implements Strategy {
 
-    private RoundSequence temp = new RoundSequence(null, null); //access to round results
-    private HashMap<String, SequenceHashMap> storedSequence;    //round sequence stored
-    private final int N;                                        //size of saved sequence
-    private String key;                                         //last round choices with N-1 length
-    private String currentSequence;                             //last round choices with N length
+    private RoundSequence temp = new RoundSequence(null, null); // access to round results
+    private HashMap<String, SequenceHashMap> storedSequence; // round sequence stored
+    private final int N; // size of saved sequence
+    private String key; // last round choices with N-1 length
+    private String currentSequence; // last round choices with N length
+    private Sign lastPrediction; // last predicted human choice
 
     private final RandomStrategy random;
 
@@ -15,12 +20,14 @@ public class MLStrategy implements Strategy {
         random = new RandomStrategy();
         N = 5;
         storedSequence = new HashMap<>();
+        loadFromFile("frequency_data.txt");
     }
 
     public MLStrategy(int seed) {
         random = new RandomStrategy(seed);
         N = 5;
         storedSequence = new HashMap<>();
+        loadFromFile("frequency_data.txt");
     }
 
     public MLStrategy(RoundSequence seq, int N) {
@@ -28,6 +35,7 @@ public class MLStrategy implements Strategy {
         temp = seq;
         this.N = N;
         storedSequence = new HashMap<>();
+        loadFromFile("frequency_data.txt");
     }
 
     public MLStrategy(int seed, RoundSequence seq, int N) {
@@ -35,6 +43,7 @@ public class MLStrategy implements Strategy {
         temp = seq;
         this.N = N;
         storedSequence = new HashMap<>();
+        loadFromFile("frequency_data.txt");
     }
 
     @Override
@@ -102,6 +111,7 @@ public class MLStrategy implements Strategy {
 
     /**
      * Find the start of the sequence
+     * 
      * @return
      */
     public int startIndex() {
@@ -118,6 +128,7 @@ public class MLStrategy implements Strategy {
 
     /**
      * end of the sequence
+     * 
      * @return
      */
     public int lastIndex() {
@@ -134,22 +145,36 @@ public class MLStrategy implements Strategy {
 
     /**
      * The algo
+     * 
      * @return
      */
     public Sign makePrediction() {
         if (temp.isLengthEqualN(N) && key != null) {
             if (storedSequence.containsKey(key)) {
                 Sign predictionSign = getMostFreqSeq(key);
+                lastPrediction = predictionSign;
                 return predictionSign.loseTo();
             } else {
+                lastPrediction = null;
                 return random.makeMove();
             }
         }
+        lastPrediction = null;
         return random.makeMove();
     }
 
     /**
+     * Get last prediction for GUI display
+     * 
+     * @return predicted Sign, or null if prediction was random
+     */
+    public Sign getLastPrediction() {
+        return lastPrediction;
+    }
+
+    /**
      * Get the most frequent pattern
+     * 
      * @param lastChoices the sequence of the last rounds String size N-1
      * @return
      */
@@ -166,9 +191,12 @@ public class MLStrategy implements Strategy {
     }
 
     /**
-     * UNFINSHED, makes a another hashmap with a different size N, currently just takes the existing saved
-     * round results and make a new hashmap. Does not add new individuals rounds to map nor predict the next
+     * UNFINSHED, makes a another hashmap with a different size N, currently just
+     * takes the existing saved
+     * round results and make a new hashmap. Does not add new individuals rounds to
+     * map nor predict the next
      * round
+     * 
      * @param n
      * @return
      */
@@ -200,5 +228,64 @@ public class MLStrategy implements Strategy {
             storedSequence.get(str).printSequenceFrequency();
         }
     }
-}
 
+    /**
+     * Saves frequency table to a file so ML data persists across games
+     * 
+     */
+    public void saveToFile(String filename) {
+        try {
+            PrintWriter writer = new PrintWriter(filename);
+            Set<String> outerKeys = storedSequence.keySet();
+            for (String outerKey : outerKeys) {
+                SequenceHashMap innerMap = storedSequence.get(outerKey);
+                HashMap<String, Integer> rawMap = innerMap.getaSeqHashMap();
+                Set<String> innerKeys = rawMap.keySet();
+                for (String innerKey : innerKeys) {
+                    int freq = rawMap.get(innerKey);
+                    writer.println(outerKey + "," + innerKey + "," + freq);
+                }
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not save frequency data: " + e.getMessage());
+        }
+    }
+
+    public void loadFromFile(String filename) {
+        File file = new File(filename);
+        if (!file.exists()) {
+            return;
+        }
+        try {
+            Scanner fileScanner = new Scanner(file);
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine().trim();
+                if (line.isEmpty()) {
+                    continue;
+                }
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    String outerKey = parts[0];
+                    String innerKey = parts[1];
+                    int freq = Integer.parseInt(parts[2]);
+                    if (storedSequence.containsKey(outerKey)) {
+                        SequenceHashMap innerMap = storedSequence.get(outerKey);
+                        for (int i = 0; i < freq; i++) {
+                            innerMap.addFreq(innerKey);
+                        }
+                    } else {
+                        SequenceHashMap innerMap = new SequenceHashMap(innerKey);
+                        for (int i = 1; i < freq; i++) {
+                            innerMap.addFreq(innerKey);
+                        }
+                        storedSequence.put(outerKey, innerMap);
+                    }
+                }
+            }
+            fileScanner.close();
+        } catch (FileNotFoundException e) {
+            // File doesn't exist
+        }
+    }
+}

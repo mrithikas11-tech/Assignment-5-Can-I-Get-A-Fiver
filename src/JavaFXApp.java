@@ -208,8 +208,25 @@ public class JavaFXApp extends Application {
             stage.setScene(exitScene);
             stage.close();
         });
+    }
 
-        stage.show();
+    private MenuBar createMenuBar(Stage stage, Scene mainScene) {
+        MenuBar menuBar = new MenuBar();
+        Menu gameMenu = new Menu("Game");
+        MenuItem newGameItem = new MenuItem("New Game");
+        MenuItem exitItem = new MenuItem("Exit");
+        newGameItem.setOnAction(e -> showGameSetup(stage, mainScene));
+        exitItem.setOnAction(e -> Platform.exit());
+        gameMenu.getItems().addAll(newGameItem, exitItem);
+
+        Menu helpMenu = new Menu("Help");
+        MenuItem aboutItem = new MenuItem("About");
+        aboutItem.setOnAction(e -> showAbout(stage, mainScene));
+        helpMenu.getItems().add(aboutItem);
+
+        menuBar.getMenus().addAll(gameMenu, helpMenu);
+        return menuBar;
+    }
 
     private void showAbout(Stage stage, Scene mainScene) {
         BorderPane aboutRoot = new BorderPane();
@@ -248,9 +265,6 @@ public class JavaFXApp extends Application {
         stage.setTitle("About");
         stage.setScene(aboutScene);
     }
-    
-}
-}
 
 public static void main(String[] args) {
     launch(args);

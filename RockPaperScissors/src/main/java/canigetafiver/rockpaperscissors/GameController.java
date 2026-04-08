@@ -72,7 +72,6 @@ public class GameController {
         Stage stage = (Stage) roundsOkay.getScene().getWindow();
         stage.setTitle("Rock Paper Scissors GUI: "+ rounds+ " Rounds");
         roundsNum.setText("Rounds: " +rounds);
-        System.out.println(rounds);
 
     }
     @FXML
